@@ -1,12 +1,13 @@
-import Image from "next/image";
+import React from "react";
 import AboutUs from "./aboutUs/aboutus";
+
+
 
 export default function Home() {
   return (
     <main>
       <AboutUs/>
       
-     
     </main>
   );
 }
