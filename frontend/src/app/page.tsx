@@ -9,20 +9,21 @@ export default function Home() {
         <Navbar />
 
         <div className="pt-20">
-          <header className="p-6 text-center lg:flex lg:container">
+          <header className="p-6 text-center sm:flex sm:container">
             <Image
               src={heroImage}
               alt="Hero image"
-              className="w-64 inline-block lg:w-full lg:order-2"
+              className="w-64 inline-block sm:w-full sm:order-2"
               width={0}
               height={0}
               priority
             />
-            <div className="lg:order-1">
-              <h1 className="mt-8 text-4xl tracking-wider font-semibold lg:text-8xl lg:text-start">
-                Start your journey with Green Hub
+            <div className="sm:order-1">
+              <h1 className="mt-8 text-4xl tracking-wider font-semibold md:text-6xl lg:text-8xl sm:text-start">
+                Start your journey with{" "}
+                <strong className="text-emerald-600">Green Hub</strong>
               </h1>
-              <p className="mt-4 text-gray-800 lg:text-start lg:text-xl">
+              <p className="mt-4 text-gray-800 sm:text-start md:text-xl">
                 You! Yes you! Let’s start by supporting our{" "}
                 <strong>locally produced goods</strong>. You can support us by
                 checking our products or become a seller
