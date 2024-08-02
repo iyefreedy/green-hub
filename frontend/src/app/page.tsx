@@ -13,7 +13,7 @@ export default function Home() {
             <Image
               src={heroImage}
               alt="Hero image"
-              className="w-64 inline-block sm:w-full sm:order-2"
+              className="w-56 inline-block sm:order-2 md:w-80 lg:w-96 xl:w-full"
               width={0}
               height={0}
               priority
