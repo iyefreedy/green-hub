@@ -1,6 +1,6 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -22,7 +22,7 @@
     text-wrap: balance;
   }
 }
-
+/* 
 @font-face {
   font-family: 'Author-Light';
   src: url('../fonts/Author-Light.ttf') format('truetype');
@@ -33,7 +33,7 @@
 
 .author-light {
   font-family: 'Author-Light';
-}
+} */
 
 /* @font-face {
   font-family: 'Regular';
