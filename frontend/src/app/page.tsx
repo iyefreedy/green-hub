@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import Image from "next/image";
 
 export default function Home() {
@@ -108,6 +109,19 @@ export default function Home() {
           </p>
         </a>
       </div>
+=======
+import React from "react";
+import AboutUs from "./about-us/page";
+import "./globals.css";
+import Products from "./products/page";
+
+export default function Home() {
+  return (
+    <main>
+      {/* <AboutUs/> */}
+      {/* <Products/> */}
+      <h1>home page</h1>
+>>>>>>> Stashed changes
     </main>
   );
 }

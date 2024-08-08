@@ -21,7 +21,10 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
+<<<<<<< Updated upstream
     "tailwindcss": "^3.4.1",
+=======
+>>>>>>> Stashed changes
     "typescript": "^5"
   }
 }
