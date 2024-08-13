@@ -1,30 +1,46 @@
-import React from 'react';
-const VoucherForm = () => {
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Handle form submission here
-    };
+import React from "react";
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="voucherId">Voucher ID:</label>
-            <input type="text" id="voucherId" />
-
-            <label htmlFor="voucherName">Voucher Name:</label>
-            <input type="text" id="voucherName" />
-
-            <label htmlFor="voucherStartDate">Voucher Start Date:</label>
-            <input type="date" id="voucherStartDate" />
-
-            <label htmlFor="voucherEndDate">Voucher End Date:</label>
-            <input type="date" id="voucherEndDate" />
-
-            <label htmlFor="sellerId">Seller ID:</label>
-            <input type="text" id="sellerId" />
-
-            <button type="submit">Submit</button>
-        </form>
-    );
+const VoucherPage = () => {
+  return (
+    <form>
+      <div className="form-group text-center fw-bolder">
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          className="form-control"
+          id="name"
+          placeholder="Enter name"
+        />
+      </div>
+      <div className="form-group text-center fw-bolder">
+        <label htmlFor="startDate">Start Date</label>
+        <input
+          type="date"
+          className="form-control"
+          id="startDate"
+          placeholder="Enter start date"
+        />
+      </div>
+      <div className="form-group text-center fw-bolder">
+        <label htmlFor="endDate">End Date</label>
+        <input
+          type="date"
+          className="form-control"
+          id="endDate"
+          placeholder="Enter end date"
+        />
+      </div>
+      <div className="form-group text-center fw-bolder">
+        <label htmlFor="code">Code</label>
+        <input
+          type="text"
+          className="form-control"
+          id="code"
+          placeholder="Enter code"
+        />
+      </div>
+    </form>
+  );
 };
 
-export default VoucherForm;
+export default VoucherPage;
