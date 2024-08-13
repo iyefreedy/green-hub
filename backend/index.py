@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask
-from flask_login import LoginManager
+# from flask_login import LoginManager
 import sqlalchemy
 from controllers.product_management import products
 # from controllers.account_management import account

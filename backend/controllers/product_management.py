@@ -1,20 +1,20 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from connectors.mysql_connectors import connection, engine
-from models.products import Products
+from connectors.mysql_connectors import connection
+from models.product import products_list
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
-products = Blueprint('accounts', __name__)
+products_list = Blueprint('accounts', __name__)
 
-@products.route('/products/', methods=['GET'])
+@products_list.route('/products/', methods=['GET'])
 # @login_required
 def get_product():
     session = sessionmaker(connection)
     s = session()
   
     try:
-        products = s.query(Products).all()
+        product = s.query(Product).all()
         products_list = []
         for prod in products:
             product_data = {
