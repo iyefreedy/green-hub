@@ -10,9 +10,9 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
-class products_list(Base):
+class product_list(Base):
     __tablename__ = 'product_list'
-    product_id = Column(Integer, nullable=False)
+    product_id = Column(Integer,primary_key=True, autoincrement=True)
     seller_id = Column(Integer, nullable=False)
     name = Column(String(100), nullable=False)
     price = Column(Numeric(10, 2), nullable=False)
@@ -21,3 +21,4 @@ class products_list(Base):
     product_category = Column(String(100), nullable=False)
     product_grade = Column(String(100), nullable=False)
     product_type = Column(String(100), nullable=False)
+    # product_image = Column(String(255), nullable=True)

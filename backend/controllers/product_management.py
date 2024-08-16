@@ -1,32 +1,31 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from connectors.mysql_connectors import connection
-from models.product import products_list
+from models.product import product_list
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
-products_list = Blueprint('accounts', __name__)
+products_list = Blueprint('product_list', __name__)
 
 @products_list.route('/products/', methods=['GET'])
 # @login_required
 def get_product():
     session = sessionmaker(connection)
     s = session()
-  
     try:
-        product = s.query(Product).all()
+        products = s.query(product_list).all()
         products_list = []
         for prod in products:
             product_data = {
-                'product_id': prod.id,
-                'seller_id': prod.user_id,
-                'name': prod.product_name,
+                'product_id': prod.product_id,
+                'seller_id': prod.seller_id,
+                'name': prod.name,
                 'price': prod.price,
                 'description': prod.description,
                 'stock': prod.stock,
-                'product_category': prod.category,
-                'product_grade': prod.grade,
-                'product_type': prod.type
+                'product_category': prod.product_category,
+                'product_grade': prod.product_grade,
+                'product_type': prod.product_type
             }
             products_list.append(product_data)
         return jsonify(products_list), 200
@@ -34,6 +33,43 @@ def get_product():
         return jsonify({"error": str(e)}), 500
     finally:
         s.close()
+
+
+@products_list.route('/products/', methods=['POST'])
+# @login_required
+def create_product():
+    session = sessionmaker(connection)
+    s = session()
+    s.begin()
+
+    try:
+        data = request.get_json()
+        if data is None or not isinstance(data, dict):
+            return jsonify({"error": "Missing or invalid JSON data"}), 400
+
+        new_product = product_list(
+            product_id=data.get('product_id'),
+            seller_id=data.get('seller_id') if data.get('seller_id') else 1,
+            name=data.get('name'),
+            price=data.get('price'),
+            description=data.get('description'),
+            stock=data.get('stock'),
+            product_category=data.get('product_category'),
+            product_grade=data.get('product_grade'),
+            product_type=data.get('product_type')
+        )
+        s.add(new_product)
+        s.commit()
+        return jsonify({"message": "Product created successfully", "product_id": new_product.product_id}), 201
+
+    except Exception as e:
+        s.rollback()
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        s.close()
+
+
 
 
 # @account.route('/accounts/', methods=['POST'])

@@ -1,37 +1,54 @@
+from datetime import datetime, timedelta
 import os
+from flask import Flask, Response, request, session
 from dotenv import load_dotenv
-from flask import Flask
-# from flask_login import LoginManager
-import sqlalchemy
-from controllers.product_management import products
-# from controllers.account_management import account
-# from controllers.transaction_management import transactions
-# from controllers.financial_management import budget
-from sqlalchemy.orm import sessionmaker
 from connectors.mysql_connectors import connection
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import text,select
+from controllers.users import user_routes
+from flask_login import LoginManager, current_user
+# from flask_jwt_extended import JWTManager
 from models.users import Users
-
+from flask import Flask, Response, redirect, url_for, request, session, abort, g
+from flask_cors import CORS
+from controllers.product_management import products_list
+from controllers.transaction_detail_management import trans_detail_bp
 load_dotenv()
 
 app = Flask(__name__)
+cors = CORS(app)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.register_blueprint(user_routes)
+app.register_blueprint(products_list)
+app.register_blueprint(trans_detail_bp)
 
-app.register_blueprint(products)
-# app.register_blueprint(account)
-# app.register_blueprint(transactions)
-# app.register_blueprint(budget)
+# jwt=JWTManager(app) ##jason web token
 
-
+##biar bisa login
 # login_manager = LoginManager()
 # login_manager.init_app(app)
 
 # @login_manager.user_loader
-# def load_user(username):
-#     session = sessionmaker(connection)
-#     s = session()
-#     return s.query(Users).get(username)
+# def load_user(user_id):
+#     Session = sessionmaker(connection)
+#     s = Session()
+#     return s.query(Users).get(int(user_id))
 
-@app.route('/')
-def index():
-    return 'Hello World!'
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+# @app.route("/")
+# def hello_world():
+        
+#         return "Product inserted!"
+
+
+# @app.before_request
+# def before_request():
+#     session.permanent = True
+#     app.permanent_session_lifetime = timedelta(minutes=300)
+#     session.modified = True
+#     g.user = current_user
+
